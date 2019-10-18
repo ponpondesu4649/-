@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>挖礦記錄器</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<style type="text/css">
+		table{
+			padding: 20px;
+		}
+		td { 
+			border:1px solid #000; 
+			text-align:center;
+			width: 40px;
+			height: 40px;
+		} 
+		tr td{
+		    background-color: #fff;
+		}
+
+		tr:nth-child(even) td:nth-child(odd),tr:nth-child(odd) td:nth-child(even){
+		    background-color: #ccc;
+		}
+	</style>
+	<div style="padding-left: 20px;">
+		<input type="text" name="mf_height" placeholder="礦場高" value="6">
+		<input type="text" name="mf_width" placeholder="礦場寬" value="12">
+		<button onclick="generate_table()">產生礦場</button>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	$(function() {
+	    //var $disabledResults = $(".js-example-disabled-results");
+		//$disabledResults.select2();
+		//generate_table();
+	});
+	function generate_table() {
+	  // get the reference for the body
+	  var body = document.getElementsByTagName("body")[0];
+
+	  // creates a <table> element and a <tbody> element
+	  var tbl = document.createElement("table");
+	  var tblBody = document.createElement("tbody");
+
+	  var mf_height = $("[name=mf_height]").val();
+	  var mf_width = $("[name=mf_width]").val();
+
+	  // creating all cells
+	  for (var i = 0; i < mf_height; i++) {
+	    // creates a table row
+	    var row = document.createElement("tr");
+
+	    for (var j = 0; j < mf_width; j++) {
+	      // Create a <td> element and a text node, make the text
+	      // node the contents of the <td>, and put the <td> at
+	      // the end of the table row
+	      // var dd_option_xxx = document.createElement("option");
+	      // dd_option_xxx.text = "xxx";
+	      var cell = document.createElement("td");
+	      var cell_dd = document.createElement("select");
+	      var dd_option_empty = document.createElement("option");
+	      dd_option_empty.text = "　";
+	      var dd_option_stairs1 = document.createElement("option");
+	      dd_option_stairs1.text = "入口";
+	      var dd_option_stairs2 = document.createElement("option");
+	      dd_option_stairs2.text = "出口";
+	      var dd_option_cooper = document.createElement("option");
+	      dd_option_cooper.text = "銅";
+	      var dd_option_silver = document.createElement("option");
+	      dd_option_silver.text = "銀";
+	      var dd_option_gold = document.createElement("option");
+	      dd_option_gold.text = "金";
+	      var dd_option_blackgrass = document.createElement("option");
+	      dd_option_blackgrass.text = "黑草";
+	      var dd_option_money = document.createElement("option");
+	      dd_option_money.text = "錢";
+
+	      cell_dd.appendChild(dd_option_empty);
+	      cell_dd.appendChild(dd_option_stairs1);
+	      cell_dd.appendChild(dd_option_stairs2);
+	      cell_dd.appendChild(dd_option_cooper);
+	      cell_dd.appendChild(dd_option_silver);
+	      cell_dd.appendChild(dd_option_gold);
+	      cell_dd.appendChild(dd_option_blackgrass);
+	      cell_dd.appendChild(dd_option_money);
+	      cell.appendChild(cell_dd);
+	      row.appendChild(cell);
+	    }
+
+	    // add the row to the end of the table body
+	    tblBody.appendChild(row);
+	  }
+
+	  // put the <tbody> in the <table>
+	  tbl.appendChild(tblBody);
+	  // appends <table> into <body>
+	  body.appendChild(tbl);
+	}
+</script>
